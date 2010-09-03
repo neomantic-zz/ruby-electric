@@ -1,0 +1,12 @@
+This version of ruby electric is a fork of ruby-electric.el which includes a patch that enables it to work with the 
+version of ruby-mode which now ships with Emacs 23.
+
+The original version can be downloaded from here:
+http://svn.joyent.com/opensource/dtrace/ruby/ruby-1.8.5/misc/ruby-electric.el
+
+The joyent version of ruby-electric does not work with Emacs 23's ruby-mode.  It depends on a function of the original
+ruby-mode - namely, ruby-insert-end - that is now missing from ruby-mode.
+The problem and fix are described here:
+http://groups.google.com/group/emacs-on-rails/browse_thread/thread/ae87fc797822bf3
+
+This version of ruby-electric includes that fix.

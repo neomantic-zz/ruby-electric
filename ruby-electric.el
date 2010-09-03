@@ -29,6 +29,10 @@
 ;;
 ;; Changelog:
 ;;
+;;  2010/Sep/03: added ruby-insert-end (now ruby-electric-insert-end)
+;;  from original ruby-mode, to get  ruby-electric to work with
+;;  the ruby-mode which ships with Emacs 23
+;;
 ;;  2005/Jan/14: inserts matching pair delimiters like {, [, (, ', ",
 ;;  ' and | .
 ;;
@@ -121,6 +125,13 @@ strings. Note that you must have Font Lock enabled."
   (define-key ruby-mode-map "\'" 'ruby-electric-matching-char)
   (define-key ruby-mode-map "|" 'ruby-electric-bar))
 
+(defun ruby-electric-insert-end () 
+  "Insert \"end\" at point and reindent current line." 
+  (interactive) 
+  (insert "end") 
+  (ruby-indent-line t) 
+  (end-of-line)) 
+
 (defun ruby-electric-space (arg)
   (interactive "P")
   (self-insert-command (prefix-numeric-value arg))
@@ -128,7 +139,7 @@ strings. Note that you must have Font Lock enabled."
       (save-excursion
 	(ruby-indent-line t)
 	(newline)
-	(ruby-insert-end))))
+	(ruby-electric-insert-end))))
 
 (defun ruby-electric-code-at-point-p()
   (and ruby-electric-mode
